@@ -1,0 +1,81 @@
+extends layout
+
+block content
+  .main-content
+    .section__content.section__content--p30
+      .container-fluid
+        .row
+          .col-md-12
+            .overview-wrap
+              h2.title-1 Data
+              button.btn.btn-primary(type='button' data-toggle="modal" data-target="#upload-modal") Upload File
+        .row
+          .col.mt-3
+            include partials/messages
+        .row
+          .col
+            h5.my-3 Found 
+              span.text-primary= entries.length
+              span  Entries
+        .row
+          .col
+            table.table.table-borderless.table-striped.table-data3
+              thead
+                tr
+                  th Job No/Booking No
+                  th Type
+                  th SubType
+                  th SubType2
+                  th Created
+                  th Updated
+                  th Details
+                  th Actions
+              tbody
+                each ent in entries
+                  tr
+                    td= ent.details['Booking No'] || ent.details['Job No']
+                    td= ent.entryType.toUpperCase()
+                    td= ent.entrySubType1.toUpperCase()
+                    td= ent.entrySubType2.toUpperCase()
+                    td.createdAt= ent.createdAt
+                    td.createdAt= ent.updatedAt
+                    td
+                      a.text-primary.btn-details(href="#" data-id= ent._id) Details
+                      //- a.text-primary(data-toggle="collapse" href=`#${ent._id}` role="button" aria-expanded="false" aria-controls="collapseExample") Details >>
+                      //- .collapse(id=ent._id)
+                      //-   each dt in ent.details
+                      //-     p= dt
+                    td
+                      a.btn.btn-danger.btn-delete.btn-sm(href=`/admin/data/delete/${ent._id}`)
+                        i.fas.fa-trash
+
+  .modal.fade#details-modal(tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true")
+    .modal-dialog.modal-lg(role="document")
+      .modal-content
+        .modal-header.bg-light
+          h5.modal-title
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+        .modal-body
+          p Body goes here
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+  .modal.fade#upload-modal(tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true")
+    .modal-dialog.modal-dialog-centered(role="document")
+      .modal-content
+        form(action="/admin/upload" method="post" enctype="multipart/form-data")
+          .modal-header.bg-light
+            h5.modal-title Upload File
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+          .modal-body
+              .form-group
+                input.form-control(type="file" required accept=".xlsx" name="file")
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+            button.btn.btn-primary(type="submit") Submit
+
+block customscripts
+  script.
+    var entries = !{JSON.stringify(entries)}
+  script(src="/js/admin/data.js")

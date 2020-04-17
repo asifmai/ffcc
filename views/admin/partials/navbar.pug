@@ -1,0 +1,19 @@
+header.header-mobile.d-block.d-lg-none
+      .header-mobile__bar
+        .container-fluid
+          .header-mobile-inner
+            a.logo(href='/admin')
+              h2 FFCC
+            button.hamburger.hamburger--slider(type='button')
+              i.fas.fa-bars
+      nav.navbar-mobile
+        .container-fluid
+          ul.navbar-mobile__list.list-unstyled
+            li(class= page == 'data' ? 'active' : '')
+              a(href='/admin/data')
+                i.fas.fa-database
+                | Data
+            li(class= page == 'users' ? 'active' : '')
+              a(href='/admin/users')
+                i.fas.fa-user
+                | Users

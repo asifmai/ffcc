@@ -1,0 +1,25 @@
+doctype html
+head
+  include partials/commonhead
+  link(rel='stylesheet' href='/css/signin.css')
+.main.sign-in
+  .login-card
+    .logo
+    .card-head
+      h3.header.text-center Sign In
+    .card-body
+      include partials/messages
+      form#frmLogin(action='/signin' method='POST' data-parsley-validate)
+        .form-group
+          label.form-label Email
+          input#txtUsername.form-control(name='email' type='email' required value= email ? email : '')
+        .form-group
+          label.form-label Password
+          input#txtPassword.form-control(name='password' type='password' required)
+        .form-group
+          button#btnSignIn.btn.btn-success.btn-block(type='submit') Sign In
+    .footer
+      a.small(href='/signup') Sign Up
+      a.small.float-right(href='/forgot-password') Forgot Password?
+include partials/commonscripts
+script(src='/js/parsley.min.js')

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    include partials/commonhead
+    block customhead
+  body
+    .page-wrapper
+      include partials/navbar
+      include partials/sidebar
+      .page-container
+        include partials/header
+        block content
+    include partials/commonscripts
+    block customscripts

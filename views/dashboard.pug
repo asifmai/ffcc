@@ -1,0 +1,106 @@
+extends layout
+
+block content
+  include partials/navbar
+  .container-fluid
+    include partials/messages
+    .shipments-parent.rounded.border-bg
+      .child1
+        .total-shipments.active
+          .text-primary.numbers.bold= entries.length
+          .total.bold Total shipments
+        .total-shipments
+          .text-secondary.numbers.bold 0
+          .total.bold At Origin
+        .total-shipments
+          .text-primary.numbers.bold 0
+          .total.bold In Transit
+        .total-shipments
+          .text-primary.numbers.bold 0
+          .total.bold Transshipment
+        .total-shipments
+          .text-success.numbers.bold 0
+          .total.bold Reached Destination
+        .total-shipments
+          .text-primary.numbers.bold 4
+          .total.bold Completed
+        .total-shipments.delay
+          .text-danger.numbers.bold 0
+          .total.bold Delayed
+      .child2
+        .bl
+          span.select-option
+            select.rounded.bl-number.d-inline.mr-2(name='searchType' required)
+              option(value='jobNo' selected) Job Number
+              option(value='hblNo') HBL Number
+              option(value='mblNo') MBL Number
+          span.search-area
+            input.bl-input.rounded(type='text' name='searchTerm' placeholder='Enter Job Number' required)
+            i.fas.fa-search.light-gray
+          //- a.text-dark(href='#')
+            i.fas.fa-filter.text-dark.ml-3
+            span.bold.ml-1 Filter
+          //- a.text-dark(href='#')
+            span.bold.ml-3 Sort by
+            i.fas.fa-stream.text-dark.ml-1
+        .new-shipment.ml-auto
+          button.small-button.border-bg
+            i.fas.fa-circle-notch
+          button.button.small-button.border-bg
+            i.fas.fa-download
+          button.small-button.border-bg Send DSR
+          //- button.shipment-button.small-button.border-bg New Shipment
+        .buttons-options
+          select.bl-number.rounded.d-inline.border-bg.mx-2(name='' id='')
+            option(value='25') 25 / page
+            option(value='50') 50 / page
+            option(value='100') 100 / page
+          a(href='#')
+            i.fas.fa-angle-double-left.light-gray.mx-1
+          a(href='#')
+            i.fas.fa-angle-left.light-gray.mx-1
+          span.one.mx-2 1
+          a(href='#')
+            i.fas.fa-angle-right.light-gray.mx-1
+          a(href='#')
+            i.fas.fa-angle-double-right.light-gray.mx-1
+    each ent in entries
+      .journey-parent.border-bg
+        .child1
+          img.img-fluid(src='/img/company-logo.png' alt='')
+          .child
+            span.one= ent.details['Job No']
+            span
+              button.small-button.border-bg Reached POD
+            .light-gray #{ent.details['No Of Containers']} containers
+          .img-text
+            img.img-fluid(src='/img/track.png' alt='')
+            div
+              span.light-gray= ent.details['Loading Port']
+              span.light-gray.float-right= ent.details['Port Of Destination']
+          .child
+            .light-gray Days at Sea
+            .date 12
+          .child
+            .light-gray Date of Arrival
+            .date 05 Mar 20
+          .child
+            a(href='#')
+              i.fas.fa-share-alt.light-gray
+        .mt-3
+          i.fas.fa-share-alt.light-gray.mr-2
+          span.light-gray All countainer of this BL have completed their journey
+          span.float-right.light-gray.small Update: 21 days ago
+
+  //- form(action="/uploaddocument", method="post", enctype="multipart/form-data")
+  //-   h2 FF Upload
+  //-   .form-group
+  //-     label File
+  //-     input(type="file" name="file" required accept=".xlsx")
+  //-   input(type="submit")
+  //-   a(href="/signout") Sign Out!
+
+block customscripts
+  script.
+    var entries = !{JSON.stringify(entries)}
+  script(src="/js/dashboard.js")

@@ -1,0 +1,20 @@
+doctype html
+head
+  include partials/commonhead
+  link(rel='stylesheet' href='/css/signin.css')
+.main.sign-in
+  .login-card.signup
+    .logo
+    .card-head
+      h3.header.text-center Verification
+    .card-body
+      include partials/messages
+      form#frmLogin(action='/verify' method='POST' data-parsley-validate)
+        input.d-none(name="userid" value= userid)
+        .form-group
+          label.form-label Enter 6 digits verfication code received on your number
+          input#mobcode.form-control(name='code' type='number' required min-length="6")
+        .form-group
+          button#btnSignIn.btn.btn-success.btn-block(type='submit') Verify
+include partials/commonscripts
+script(src='/js/parsley.min.js')

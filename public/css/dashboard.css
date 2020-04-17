@@ -1,0 +1,133 @@
+.page-content {
+  margin-top: 5em;
+}
+/* Navbar */
+.navbar{
+  border-bottom: 1px solid rgb(212, 212, 212);
+  padding: 0px !important;
+  box-shadow:  1px 5px 6px 1px rgb(212, 212, 212);
+}
+.navbar-nav .active ,.navbar-nav .nav-item:hover{
+  color: rgb(70, 70, 180);
+  border-bottom: 3px solid rgb(70, 70, 180);
+}
+.navbar-nav .nav-item{
+  font-weight: 600;
+  width: 150px;
+  text-align: center;
+  transition: 200ms !important;
+  cursor: pointer;
+}
+.navbar-nav >.help{
+  color: rgb(70, 70, 180);
+}
+.navbar-nav > .nav-item > .nav-link > i {
+  margin-right: 0.5em;
+}
+
+/* shipments-parent */
+.shipments-parent >.child1{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(212, 212, 212);
+}
+.shipments-parent .total-shipments{
+  width: 14%;
+  padding-bottom: 0.7em;
+}
+.shipments-parent >.child1 .numbers{
+  font-weight: 900;
+  font-size: 1em;
+}
+.shipments-parent >.child1 >.active{
+  border-bottom: 2px solid lightseagreen;
+}
+.child1  .delay{
+  border-left: 1px solid  rgb(212, 212, 212);
+  padding-left: 0.6em;
+}
+.bl >.select-option >.bl-number{
+padding:  0.2em;
+}
+.light-gray{
+  color: rgb(190, 190, 190);
+}
+.bl .search-area{
+  position: relative;
+}
+.bl .fa-search{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1em;
+}
+.search-area >.bl-input{
+  padding: 0.2em 2.1em 0.2em 0.2em;
+}
+.bold{
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.shipments-parent .child2{
+  display: flex;
+  align-items: initial;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding:  0.8em 0.5em;
+}
+.small-button{
+  padding: 0.2em 0.6em;
+}
+.new-shipment .shipment-button{
+  background: rgb(70, 70, 180);
+  color: white;
+}
+.buttons-options .bl-number{
+  padding: 0.2em;
+}
+.child2 .rounded{
+  border: 1px solid rgb(212, 212, 212);
+  border-radius: 2px;
+}
+.shipments-parent{
+  padding: 0.9em;
+  box-shadow:  3px 3px 5px -2px grey;
+  margin-top: 3.5em;
+  background-color: white;
+}
+.new-shipment .small-button{
+  margin: 0 7px;
+}
+/* journey */
+.journey-parent >.child1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.journey-parent .small-button{
+  border-radius: 1em;
+  background-color: rgb(190, 190, 190);
+  color: white;
+  padding: 0em 0.6em 0em 0.6em;
+  font-size: 0.8em;
+  margin-left: 1em;
+  font-weight: 600;
+}
+.journey-parent{
+  padding: 1em 2em;
+  margin-top: 0.5em;
+  border-left: 6px solid black !important;
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px -2px grey;
+}
+.journey-parent:nth-of-type(odd){
+  border-left-color:  gray !important;
+}
+.border-bg{
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+}

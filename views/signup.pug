@@ -1,0 +1,45 @@
+doctype html
+head
+  include partials/commonhead
+  link(rel='stylesheet' href='/css/signin.css')
+.main.sign-in
+  .login-card.signup
+    .logo
+    .card-head
+      h3.header.text-center Sign Up
+    .card-body
+      form#frmLogin(action='/signup' method='POST' data-parsley-validate)
+        include partials/messages
+        .row
+          .col-md-6
+            .form-group
+              label.form-label First Name
+              input#firstname.form-control(name='firstName' type='text' required value= firstName ? firstName : '')
+          .col-md-6
+            .form-group
+              label.form-label Last Name
+              input#lastname.form-control(name='lastName' type='text' required value= lastName ? lastName : '')
+          .col-md-6
+            .form-group
+              label.form-label Email
+              input#email.form-control(name='email' type='email' required value= email ? email : '')
+          .col-md-6
+            .form-group
+              label.form-label Phone
+              input#number.form-control(name='phone' type='text' required value= phone ? phone : '')
+          .col-md-6
+            .form-group
+              label.form-label Password
+              input#password.form-control(name='password' type='password' required minlength="6" value= password ? password : '')
+          .col-md-6
+            .form-group
+              label.form-label Confirm Password
+              input#confirmpassword.form-control(name='password2' type='password' required data-parsley-equalto="#password" minlength="6" value= password2 ? password2 : '')
+        .form-group
+          button#btnSignIn.btn.btn-success.btn-block(type='submit') Sign Up
+    .footer
+      a.small(href='/signin') Sign In
+      a.small.float-right(href='/forgot-password') Forgot Password?
+      
+include partials/commonscripts
+script(src='/js/parsley.min.js')

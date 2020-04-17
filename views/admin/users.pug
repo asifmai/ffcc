@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .main-content
+    .section__content.section__content--p30
+      .container-fluid
+        .row
+          .col-md-12
+            .overview-wrap
+              h2.title-1 Users
+        .row 
+          .col.mt-3
+            include partials/messages
+        .row
+          .col
+            table.table.table-borderless.table-striped.table-data3
+              thead
+                tr
+                  th Name
+                  th Email
+                  th Phone
+                  th Verified
+                  th Joined
+                  th Actions
+              tbody
+                each usr in users
+                  tr
+                    td= usr.fullName
+                    td= usr.email
+                    td= usr.phone
+                    td= usr.verified
+                    td.createdAt= usr.createdAt
+                    td
+                      a.text-danger.btn-delete(href=`/admin/users/deleteuser/${usr._id}` title="Delete")
+                        i.fas.fa-trash
+
+
+block customscripts
+  script(src="/js/admin/users.js")

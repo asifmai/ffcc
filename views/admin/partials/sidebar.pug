@@ -1,0 +1,15 @@
+aside.menu-sidebar.d-none.d-lg-block
+      .logo
+        a(href='/admin')
+          h2 FFCC
+      .menu-sidebar__content.js-scrollbar1
+        nav.navbar-sidebar
+          ul.list-unstyled.navbar__list
+            li(class= page == 'data' ? 'active' : '')
+              a(href='/admin/data')
+                i.fas.fa-database
+                | Data
+            li(class= page == 'users' ? 'active' : '')
+              a(href='/admin/users')
+                i.fas.fa-user
+                | Users
