@@ -1,5 +1,8 @@
 extends layout
 
+block customhead
+  link(rel="stylesheet", href="/css/dashboard.css")
+
 block content
   include partials/navbar
   .container-fluid
@@ -65,11 +68,11 @@ block content
           a(href='#')
             i.fas.fa-angle-double-right.light-gray.mx-1
     each ent in entries
-      .journey-parent.border-bg
+      .journey-parent.border-bg(data-id=ent._id)
         .child1
           img.img-fluid(src='/img/company-logo.png' alt='')
           .child
-            span.one= ent.details['Job No']
+            span.one= ent.details['Job No'] || ent.details['Booking No']
             span
               button.small-button.border-bg Reached POD
             .light-gray #{ent.details['No Of Containers']} containers
@@ -77,7 +80,7 @@ block content
             img.img-fluid(src='/img/track.png' alt='')
             div
               span.light-gray= ent.details['Loading Port']
-              span.light-gray.float-right= ent.details['Port Of Destination']
+              span.light-gray.float-right= ent.details['Port Of Destination'] || ent.details['Discharge Port']
           .child
             .light-gray Days at Sea
             .date 12

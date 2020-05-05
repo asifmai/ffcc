@@ -7,11 +7,13 @@ const entrySchema = new mongoose.Schema({
   details: Object,
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    index: true,
   },
   updatedAt: {
     type: Date,
     default: Date.now,
+    index: true,
   }
 });
 

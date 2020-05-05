@@ -7,8 +7,31 @@ const Entry = require('../models/Entry');
 
 module.exports.index_get = async (req, res, next) => {
   const entries = await Entry.find({'details.Customer Email': req.user.email}).sort({updatedAt: 'desc'}).exec();
-  console.log(entries)
   res.render('dashboard', {entries});
+}
+
+module.exports.track_get = async (req, res, next) => {
+  const {id} = req.params;
+  const entry = await Entry.findById(id);
+  console.log(entry);
+  res.render('track', entry);
+}
+
+module.exports.search_get = async (req, res, next) => {
+  const {searchType, searchTerm} = req.query;
+  const searchTermRegEx = new RegExp(searchTerm, 'gi');
+  const dbQuery = Entry.find({'details.Customer Email': req.user.email});
+  
+  if (searchType == 'jobNo') {
+    dbQuery.where({$or: [{"details.Booking No": searchTermRegEx}, {"details.Job No": searchTermRegEx}]});
+  } else if (searchType == 'hblNo') {
+    dbQuery.where({$or: [{"details.HAWB/HBL No": searchTermRegEx}, {"details.HAWB / HBL/ HBOL No": searchTermRegEx}]});
+  } else if (searchType == 'mblNo') {
+    dbQuery.where({$or: [{"details.AWB/BL/MWB No": searchTermRegEx}, {"details.MAWB/MBL No": searchTermRegEx}]});
+  }
+
+  const entries = await dbQuery.sort({updatedAt: 'desc'}).exec();
+  res.render('dashboard', {entries, searchTerm, searchType});
 }
 
 module.exports.signin_get = (req, res, next) => {

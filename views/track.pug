@@ -1,0 +1,165 @@
+extends layout
+
+block customhead
+  link(rel="stylesheet", href="/css/track.css")
+
+block content
+  .container-fluid
+    .section-parent
+      .row
+        .col.mt-3
+          .list-section
+            .pod
+              span.one.bold ONEYSZPA14462700
+              button.small-button.ml-3.mt-2 Reached POD
+            .backtolist
+              a(href='#' onClick='window.history.back()')
+                i.fas.fa-angle-left.mr-2
+                | Back To List View
+      .row
+        .col.mt-4
+          img(src='./img/Screenshot_1.png' alt='')
+      .row
+        .col-md-3
+          .all-parent
+            .same-height
+              span.bold Shipping Line:
+              span.simple ONLINE
+            .same-height
+              span.bold Destination:
+              span.simple.light-gray Nhava Sheva, India
+            .same-height
+              span.bold Detention Free Days:
+              span.simple.light-gray -
+            .same-height
+              span.bold Totals Containers:
+              span.simple.light-gray 1
+            .same-height
+              span.bold Movement Type:
+              span.simple.light-gray IMPORT
+        .col-md-3
+          .all-parent
+            .same-height
+              span.bold POL:
+              span.simple.light-gray Shekou, Guangdong, Chine
+            .same-height
+              span.bold ETA (POD):
+              span.simple.light-gray -
+            .same-height
+              span.bold CFS Free Days:
+              span.simple.light-gray -
+            .same-height
+              span.bold Invoice Number:
+              span.simple.light-gray -
+        .col-md-3
+          .all-parent
+            .same-height
+              span.bold POL:
+              span.simple.light-gray Nhava Sheva, India
+            .same-height
+              span.bold ETA (Destination):
+              span.simple.light-gray 05 Mar 20
+            .same-height
+              span.bold Internal Number:
+              span.simple.light-gray -
+            .same-height
+              span.bold Contract Number:
+              span.simple.light-gray -
+        .col-md-3
+          .all-parent
+            .same-height
+              span.bold ORIGIN:
+              span.simple.light-gray Shekou, Guangdong, Chine
+            .same-height
+              span.bold Demurrage Free Days:
+              span.simple.light-gray -
+            .same-height.mt-5
+              span.bold BL issue Date:
+              span.simple.light-gray -
+  .container-fluid.p-0
+    section.links-section
+      .row
+        .col-md-6
+          ul.links.p-0
+            li.link.bold
+              a(href='#') All (1)
+            li.link.bold
+              a.active(href='#') At Origin (0)
+            li.link.bold
+              a.link(href='#') In Transit (0)
+            li.link.bold
+              a.link(href='#') Transshipment (0)
+            li.link.bold
+              a.link(href='#') Reached POD (1)
+            li.link.bold
+              a.link(href='#') Delayed (0)
+      .row
+        .col-md-8
+          .journey-parent
+            .child1
+              .child
+                span.bold ONEYSZPA14462700
+                span
+                  button.small-button.gray-button.ml-3 Reached POD
+                .light-gray 20&apos;standard
+              .child
+                .light-gray Status
+                .bold Reached POD
+              .child
+                .light-gray Last Location
+                .bold Nhava Sheva, India
+              .child
+                .light-gray Days at Sea
+                .bold 12
+            .mt-3
+              i.fas.fa-share-alt.light-gray
+              span.light-gray All countainer of this BL have completed their journey
+            .light-gray.text-right.mt-2.mt-md-0 Update: 3 weeks ago
+        .col-md-4.mt-3.mt-md-0
+          .bold Container # NYKU9728017
+          .details-card.mt-3
+            .check-line
+              .line
+            .main-parent
+              .details
+                i.check-mark.fas.fa-check-circle
+                span.bold.change Shekou, Guangdong, China
+                button.card-button.small-button At Origin
+              .details
+                span.text.light-gray.mr-3 16-2-2020
+                span.text.light-gray Empty Container Release to Shipper
+              .details
+                span.text.light-gray.mr-3 16-2-2020
+                span.text.light-gray Empty Container Release to Shipper
+              .details
+                span.text.light-gray.mr-3 16-2-2020
+                span.text.light-gray Empty Container Release to Shipper
+              .details
+                span.text.light-gray.mr-3 16-2-2020
+                span.text.light-gray Empty Container Release to Shipper
+              .details
+                i.check-mark.fas.fa-check-circle
+                span.bold.change Shekou,Guangdong,China-Nhava Sheva,India
+                button.card-button.small-button In Transit
+              .details
+                span.text.light-gray 22-02-2020 - 05-03-2020
+              .details
+                i.check-mark.fas.fa-check-circle
+                span.bold.change Shekou, Guangdong, China
+                button.card-button.small-button Reached TOD
+              .details
+                span.text.light-gray.mr-3 05-03-2020
+                span.text.light-gray &apos;NYK TRITON 078&apos; Arrival at port of Discharging
+              .details
+                span.text.light-gray.mr-3 05-03-2020
+                span.text.light-gray &apos;NYK TRITON 078&apos; Arrival at port of Discharging
+              .details
+                span.text.light-gray.mr-3 05-03-2020
+                span.text.light-gray &apos;NYK TRITON 078&apos; Arrival at port of Discharging
+              .details
+                i.check-mark.fas.fa-check-circle
+                span.bold.change Shekou, Guangdong, China
+                button.card-button.small-button Reached TOD
+              .details
+                span.text.light-gray.mr-3 05-03-2020
+                span.text.light-gray &apos;NYK TRITON 078&apos; Arrival at port of Discharging

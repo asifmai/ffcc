@@ -102,6 +102,9 @@ padding:  0.2em;
   margin: 0 7px;
 }
 /* journey */
+.journey-parent {
+  cursor: pointer;
+}
 .journey-parent >.child1{
   display: flex;
   justify-content: space-between;

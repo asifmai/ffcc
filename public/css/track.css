@@ -1,0 +1,139 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+}
+/* parent section */
+.list-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.small-button{
+    padding: 0.2em 0.5em;
+    border-radius: 1em;
+    background-color: lightseagreen;
+    border: 1px solid white;
+    color: white;
+    font-size: 0.8em;
+    outline-style: none !important;
+    font-weight: 600;
+    transition: 200ms ease-in-out;
+}
+.small-button:hover{
+    background-color: white;
+    color: lightseagreen;
+    border: 1px solid lightseagreen;
+}
+.light-gray{
+    color: rgb(190, 170, 150);
+}
+.bold{
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.pod >.one{
+    font-size: 1.1em;
+}
+.all-parent >.same-height{
+    margin-bottom: 1em;
+}
+.all-parent .simple{
+    margin-left: 0.8em;
+}
+.section-parent{
+ border-bottom: 2px solid rgb(190, 170, 150);
+}
+/* Links section */
+.links-section{
+    padding: 1em;
+}
+.links{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+}
+.links >.link{
+    list-style: none;
+    border: 2px solid white;
+    margin-top: 0.5em;
+}
+.links >.link a{
+    text-decoration: none;
+    color: black;
+    transition: 200ms ease-in-out;
+}
+.links >.link >.active,.links >.link a:hover{
+    color: rgb(70, 70, 180);
+    border-bottom: 2px solid rgb(70, 70, 180);;
+
+}
+.links-section .journey-parent >.child1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.links-section .journey-parent{
+    border: 1px solid rgb(190, 170, 150);
+    padding: 1em;
+    border-radius: 8px;
+}
+.journey-parent .child1 .gray-button{
+    background-color: rgb(190, 190, 190);
+    border: 1px solid rgb(190, 190, 190);
+}
+.journey-parent .child1 .gray-button:hover{
+    background-color: white;
+    color: rgb(190, 190, 190);
+}
+.details-card .main-parent .details >.check-mark{
+    color: chartreuse;
+    font-size: 1.5em;
+}
+.details-card .check-line .line{
+    background-color: chartreuse;
+    width: 3px;
+    height: calc(100% - 20px);
+}
+.details-card .card-button{
+    color: chartreuse;
+    border: 1px solid chartreuse;
+    background-color: white;
+    margin-left: 1em;
+    transition: 200ms ease-in-out;
+}
+.details-card .card-button:hover{
+    color: white;
+    background-color: chartreuse;
+}
+.details-card .check-line{
+    position: relative;
+}
+.details-card .main-parent .details >.check-mark{
+    position: absolute;
+    left: -34px;
+    background-color: white;
+}
+.details-card .details{
+    margin-left: 1.3em;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+.text{
+    font-size: 0.9em;
+}
+.details-card {
+    padding: 1.4em;
+    box-shadow: 1px 1px 6px 1px chartreuse;
+    border-radius: 8px;
+    display: flex;
+    
+}
+.details-card .details .change:hover{
+    color: lime;
+    cursor: pointer;
+}
+
+

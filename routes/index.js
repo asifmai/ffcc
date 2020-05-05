@@ -3,11 +3,17 @@ const router = express.Router();
 const indexController = require('../controllers/indexcontroller');
 const auth = require('../helpers/auth');
 
-/* GET - Public - home page */
-router.get('/', auth.ensureAuthenticated, indexController.index_get);
+/* GET - Private - home page */
+router.get('/', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.index_get);
+
+/* GET - Private - Track page */
+router.get('/track/:id', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.track_get);
+
+/* GET - Private - Track page */
+router.get('/search', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.search_get);
 
 /* GET - Show Sign in Page */
-router.get('/signin', auth.ensureAuthenticatedLogin, indexController.signin_get);
+router.get('/signin', indexController.signin_get);
 
 /* POST - Show Sign in Page */
 router.post('/signin', indexController.signin_post);
@@ -19,7 +25,7 @@ router.get('/signup', indexController.signup_get);
 router.post('/signup', indexController.signup_post);
 
 /* GET - Signup user */
-router.get('/signout', indexController.signout_get);
+router.get('/signout', auth.ensureAuthenticated, indexController.signout_get);
 
 /* GET - Show verification page */
 router.get('/verify/:userid', indexController.verify_get);

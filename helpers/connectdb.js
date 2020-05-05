@@ -9,6 +9,7 @@ module.exports = () => new Promise(async (resolve, reject) => {
       useNewUrlParser: true,
       useFindAndModify: false,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
     // mongoose.set('debug', true);
     console.log('MongoDB Connected...');
