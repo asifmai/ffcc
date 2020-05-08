@@ -15,9 +15,10 @@ module.exports = function(passport) {
           }
 
           // Match password
-          bcrypt.compare(password, user.password, (err, isMatch) => {
+          bcrypt.compare(password, user.password, async (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
+              await User.findOneAndUpdate({email}, {lastLogin: new Date()});
               return done(null, user);
             } else {
               return done(null, false, { message: 'Password incorrect' });

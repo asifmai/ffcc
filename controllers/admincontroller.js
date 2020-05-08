@@ -1,5 +1,6 @@
 const passport = require('passport');
 const excelToJson = require('convert-excel-to-json');
+const bcrypt = require('bcryptjs');
 const Entry = require('../models/Entry');
 const User = require('../models/User');
 const entryController = require('./entrycontroller');
@@ -41,6 +42,15 @@ module.exports.users_get = async (req, res, next) => {
   const users = await User.find({isAdmin: false}).sort({firstName: 'asc'});
 
   res.render('admin/users', {page: 'users', users});
+}
+
+// POST - Chnage a user password
+module.exports.changepassword_post = async (req, res, next) => {
+  const {id, password} = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(password, salt);
+  await User.findByIdAndUpdate(id, {password: hash});
+  res.redirect('/admin/users');
 }
 
 // GET - Delete User
@@ -142,4 +152,13 @@ module.exports.deleteentry_post = async (req, res, next) => {
   await Entry.findByIdAndDelete(entryid);
   req.flash('success_msg', 'Entry Deleted successfuly...');
   res.redirect('/admin/data');
+}
+
+// POST - Delete multiple entries
+module.exports.deletemultiple_post = async (req, res, next) => {
+  const entriesToDelete = req.body;
+  for (let i = 0; i < entriesToDelete.length; i++) {
+    await Entry.findByIdAndDelete(entriesToDelete[i]);
+  }
+  res.send('done');
 }

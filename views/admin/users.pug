@@ -21,6 +21,7 @@ block content
                   th Phone
                   th Verified
                   th Joined
+                  th Last Login
                   th Actions
               tbody
                 each usr in users
@@ -30,9 +31,34 @@ block content
                     td= usr.phone
                     td= usr.verified
                     td.createdAt= usr.createdAt
+                    td.createdAt= usr.lastLogin
                     td
                       a.text-danger.btn-delete(href=`/admin/users/deleteuser/${usr._id}` title="Delete")
                         i.fas.fa-trash
+                      a.text-success.btn-changepassword.ml-2(href=`#` title="Change Password" data-username= usr.fullName, data-userid= usr._id)
+                        i.fas.fa-key
+
+  #modal-changepassword.modal.fade(tabindex='-1' role='dialog' aria-labelledby='modelTitleId' aria-hidden='true')
+    .modal-dialog(role='document')
+      form(action="/admin/users/changepassword", method="post", data-parsley-validate)
+        .modal-content
+          .modal-header
+            h5.modal-title Change Password
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            p.mb-3 Change Password for User
+              span#userName.ml-1
+            input.d-none#userId(name="id", required)
+            .form-group
+              label.mb-0.small(for="newpassword") New Password
+              input.form-control#newpassword(type="password", required, minlength="6", name= "password")
+            .form-group
+              label.mb-0.small(for="confirmpassword") Confirm Password
+              input.form-control#confirmpassword(type="password", required, minlength="6", data-parsley-equalto="#newpassword" name= "password2")
+          .modal-footer
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submit') Save
 
 
 block customscripts

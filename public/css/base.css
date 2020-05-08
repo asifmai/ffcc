@@ -13,3 +13,7 @@ body {
   color: #FF3547;
   text-align: left;
 }
+
+button {
+  cursor: pointer;
+}

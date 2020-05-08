@@ -1,6 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 $(document).ready(function() {
+  if (searchType !== '') {
+    $('.select-option select').val(searchType);
+  }
+
   $('select[name="searchType"]').change(function(e) {
     e.preventDefault();
     $('input[name="searchTerm"]').attr('placeholder', 'Enter ' + $('select[name="searchType"] > option:selected').text());

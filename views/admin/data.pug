@@ -19,35 +19,45 @@ block content
               span  Entries
         .row
           .col
-            table.table.table-borderless.table-striped.table-data3
-              thead
-                tr
-                  th Job No/Booking No
-                  th Type
-                  th SubType
-                  th SubType2
-                  th Created
-                  th Updated
-                  th Details
-                  th Actions
-              tbody
-                each ent in entries
+            .multiple-actions.d-none
+              a.text-danger.small.btn-multiple-delete(href="#")
+                i.fas.fa-trash
+                |  Delete
+        .row
+          .col
+            .table-container
+              table.table.table-borderless.table-striped.table-data3
+                thead
                   tr
-                    td= ent.details['Booking No'] || ent.details['Job No']
-                    td= ent.entryType.toUpperCase()
-                    td= ent.entrySubType1.toUpperCase()
-                    td= ent.entrySubType2.toUpperCase()
-                    td.createdAt= ent.createdAt
-                    td.createdAt= ent.updatedAt
-                    td
-                      a.text-primary.btn-details(href="#" data-id= ent._id) Details
-                      //- a.text-primary(data-toggle="collapse" href=`#${ent._id}` role="button" aria-expanded="false" aria-controls="collapseExample") Details >>
-                      //- .collapse(id=ent._id)
-                      //-   each dt in ent.details
-                      //-     p= dt
-                    td
-                      a.btn.btn-danger.btn-delete.btn-sm(href=`/admin/data/delete/${ent._id}`)
-                        i.fas.fa-trash
+                    th
+                    th Job No/Booking No
+                    th Consignor
+                    th Consignee
+                    th Type
+                    th SubType
+                    th SubType2
+                    th Created
+                    th Updated
+                    th Details
+                    th Actions
+                tbody
+                  each ent in entries
+                    tr
+                      td
+                        input.data-check(type="checkbox", name="", data-id= ent._id)
+                      td= ent.details['Booking No'] || ent.details['Job No']
+                      td= ent.details['Consignor Name'] || ent.details['Exporter'] || ent.details['Shipper']
+                      td= ent.details['Consignee Name'] || ent.details['Consignee']
+                      td= ent.entryType.toUpperCase()
+                      td= ent.entrySubType1.toUpperCase()
+                      td= ent.entrySubType2.toUpperCase()
+                      td.createdAt= ent.createdAt
+                      td.createdAt= ent.updatedAt
+                      td
+                        a.text-primary.btn-details(href="#" data-id= ent._id) Details
+                      td
+                        a.btn.btn-danger.btn-delete.btn-sm(href=`/admin/data/delete/${ent._id}`)
+                          i.fas.fa-trash
 
   .modal.fade#details-modal(tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true")
     .modal-dialog.modal-lg(role="document")

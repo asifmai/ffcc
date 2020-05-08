@@ -1,0 +1,21 @@
+.multiple-actions {
+  padding: 0.5em;
+  background: white;
+  margin: 0.5em 0;
+}
+
+.table-container {
+  overflow-x: scroll;
+}
+
+.table-container > table th {
+  cursor: pointer;
+} 
+
+th.sorted.ascending:after {
+	content: "  \2191";
+}
+
+th.sorted.descending:after {
+	content: " \2193";
+}

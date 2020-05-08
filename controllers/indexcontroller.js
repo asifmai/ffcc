@@ -6,8 +6,9 @@ const twilio = require('../helpers/twilio');
 const Entry = require('../models/Entry');
 
 module.exports.index_get = async (req, res, next) => {
-  const entries = await Entry.find({'details.Customer Email': req.user.email}).sort({updatedAt: 'desc'}).exec();
-  res.render('dashboard', {entries});
+  // const entries = await Entry.find({'details.Customer Email': req.user.email}).sort({updatedAt: 'desc'}).exec();
+  // res.render('dashboard', {entries});
+  res.redirect('/search');
 }
 
 module.exports.track_get = async (req, res, next) => {
@@ -18,16 +19,21 @@ module.exports.track_get = async (req, res, next) => {
 }
 
 module.exports.search_get = async (req, res, next) => {
-  const {searchType, searchTerm} = req.query;
-  const searchTermRegEx = new RegExp(searchTerm, 'gi');
-  const dbQuery = Entry.find({'details.Customer Email': req.user.email});
+  const searchType = req.query.searchType ? req.query.searchType : '';
+  const searchTerm = req.query.searchTerm ? req.query.searchTerm : '';
   
-  if (searchType == 'jobNo') {
-    dbQuery.where({$or: [{"details.Booking No": searchTermRegEx}, {"details.Job No": searchTermRegEx}]});
-  } else if (searchType == 'hblNo') {
-    dbQuery.where({$or: [{"details.HAWB/HBL No": searchTermRegEx}, {"details.HAWB / HBL/ HBOL No": searchTermRegEx}]});
-  } else if (searchType == 'mblNo') {
-    dbQuery.where({$or: [{"details.AWB/BL/MWB No": searchTermRegEx}, {"details.MAWB/MBL No": searchTermRegEx}]});
+  const dbQuery = Entry.find({'details.Customer Email': req.user.email});
+
+  if (searchType !== '' && searchTerm !== '') {
+    const searchTermRegEx = new RegExp(searchTerm, 'gi');
+    
+    if (searchType == 'jobNo') {
+      dbQuery.where({$or: [{"details.Booking No": searchTermRegEx}, {"details.Job No": searchTermRegEx}]});
+    } else if (searchType == 'hblNo') {
+      dbQuery.where({$or: [{"details.HAWB/HBL No": searchTermRegEx}, {"details.HAWB / HBL/ HBOL No": searchTermRegEx}]});
+    } else if (searchType == 'mblNo') {
+      dbQuery.where({$or: [{"details.AWB/BL/MWB No": searchTermRegEx}, {"details.MAWB/MBL No": searchTermRegEx}]});
+    }
   }
 
   const entries = await dbQuery.sort({updatedAt: 'desc'}).exec();

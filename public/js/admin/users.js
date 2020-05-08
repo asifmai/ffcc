@@ -5,6 +5,14 @@ $(document).ready(function () {
     $(element).text(newDt);
   });
 
+  $('.btn-changepassword').click(function (e) { 
+    e.preventDefault();
+    const userName = $(this).attr('data-username');
+    const userId = $(this).attr('data-userid');
+    $('#modal-changepassword span#userName').text(userName);
+    $('#modal-changepassword input#userId').val(userId);
+    $('#modal-changepassword').modal('show')
+  });
   
   $('.btn-delete').on('click', function (e) {
     e.preventDefault();

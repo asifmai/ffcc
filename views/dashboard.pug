@@ -34,11 +34,11 @@ block content
         .bl
           span.select-option
             select.rounded.bl-number.d-inline.mr-2(name='searchType' required)
-              option(value='jobNo' selected) Job Number
+              option(value='jobNo') Job Number
               option(value='hblNo') HBL Number
               option(value='mblNo') MBL Number
           span.search-area
-            input.bl-input.rounded(type='text' name='searchTerm' placeholder='Enter Job Number' required)
+            input.bl-input.rounded(type='text' name='searchTerm' placeholder='Enter Job Number' required value=searchTerm)
             i.fas.fa-search.light-gray
           //- a.text-dark(href='#')
             i.fas.fa-filter.text-dark.ml-3
@@ -49,7 +49,7 @@ block content
         .new-shipment.ml-auto
           button.small-button.border-bg
             i.fas.fa-circle-notch
-          button.button.small-button.border-bg
+          a(href="#").text-dark.button.small-button.border-bg(title="Download")
             i.fas.fa-download
           button.small-button.border-bg Send DSR
           //- button.shipment-button.small-button.border-bg New Shipment
@@ -67,33 +67,46 @@ block content
             i.fas.fa-angle-right.light-gray.mx-1
           a(href='#')
             i.fas.fa-angle-double-right.light-gray.mx-1
-    each ent in entries
-      .journey-parent.border-bg(data-id=ent._id)
-        .child1
-          img.img-fluid(src='/img/company-logo.png' alt='')
-          .child
-            span.one= ent.details['Job No'] || ent.details['Booking No']
-            span
-              button.small-button.border-bg Reached POD
-            .light-gray #{ent.details['No Of Containers']} containers
-          .img-text
-            img.img-fluid(src='/img/track.png' alt='')
-            div
-              span.light-gray= ent.details['Loading Port']
-              span.light-gray.float-right= ent.details['Port Of Destination'] || ent.details['Discharge Port']
-          .child
-            .light-gray Days at Sea
-            .date 12
-          .child
-            .light-gray Date of Arrival
-            .date 05 Mar 20
-          .child
-            a(href='#')
-              i.fas.fa-share-alt.light-gray
-        .mt-3
-          i.fas.fa-share-alt.light-gray.mr-2
-          span.light-gray All countainer of this BL have completed their journey
-          span.float-right.light-gray.small Update: 21 days ago
+    - if (entries.length > 0) {
+      each ent, index in entries
+        .journey-parent.border-bg(data-id=ent._id)
+          .numbering= index + 1
+          .child1
+            - if (ent.details['Airline/Shipping Line/Transporter']) {
+              .shipping-line= ent.details['Airline/Shipping Line/Transporter'].split(' ')[0].toUpperCase()
+            - } else if (ent.details['Airline/Shipping Line']) {
+              .shipping-line= ent.details['Airline/Shipping Line'].split(' ')[0].toUpperCase()
+            - }
+            .child(style="width: 28%")
+              span.one= ent.details['Job No'] || ent.details['Booking No']
+              span
+                button.small-button.border-bg Reached POD
+              .light-gray #{ent.details['No Of Containers']} containers
+            .img-text(style="width: 28%")
+              //- img.img-fluid(src='/img/track.png' alt='')
+              .ship-status
+                .origin(class= ent.shipStatus == 'origin' ? 'active' : '')
+                .transit(class= ent.shipStatus == 'transit' ? 'active' : '')
+                i.fas.fa-ship.destination(class= ent.shipStatus == 'destination' ? 'active' : '')
+              div.ship-status2
+                span.light-gray.font-weight-bold.origin(class= ent.shipStatus == 'origin' ? 'active' : '')= ent.details['Loading Port'] || ent.details['Port Of Loading']
+                span.light-gray.float-right.font-weight-bold.destination(class= ent.shipStatus == 'destination' ? 'active' : '')= ent.details['Port Of Destination'] || ent.details['Discharge Port']
+            .child(style="width: 10%")
+              .light-gray Days in Transit
+              .date 12
+            .child(style="width: 15%")
+              .light-gray Date of Arrival
+              .date= ent.details['ETA'] || ent.details['Delivery Date']
+            .child(style="width: 3%; text-align: right")
+              a(href='#')
+                i.fas.fa-share-alt.light-gray
+          .mt-3
+            i.fas.fa-share-alt.light-gray.mr-2
+            span.light-gray All containers of this BL have completed their journey
+            span.float-right.light-gray.small.updated-at= ent.timeAgo
+    - } else {
+        .error-notfound No results found. Please check input data
+    - }
 
   //- form(action="/uploaddocument", method="post", enctype="multipart/form-data")
   //-   h2 FF Upload
@@ -106,4 +119,5 @@ block content
 block customscripts
   script.
     var entries = !{JSON.stringify(entries)}
+    var searchType = !{JSON.stringify(searchType)}
   script(src="/js/dashboard.js")
