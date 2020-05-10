@@ -49,7 +49,7 @@ block content
         .new-shipment.ml-auto
           button.small-button.border-bg
             i.fas.fa-circle-notch
-          a(href="#").text-dark.button.small-button.border-bg(title="Download")
+          a(href="#").text-dark.button.small-button.border-bg.btn-download-csv(title="Download")
             i.fas.fa-download
           button.small-button.border-bg Send DSR
           //- button.shipment-button.small-button.border-bg New Shipment
@@ -80,7 +80,7 @@ block content
             .child(style="width: 28%")
               span.one= ent.details['Job No'] || ent.details['Booking No']
               span
-                button.small-button.border-bg Reached POD
+                button.small-button.border-bg.reached-pod(class= ent.shipStatus == 'destination' ? 'active' : '') Reached POD
               .light-gray #{ent.details['No Of Containers']} containers
             .img-text(style="width: 28%")
               //- img.img-fluid(src='/img/track.png' alt='')
@@ -104,6 +104,8 @@ block content
             i.fas.fa-share-alt.light-gray.mr-2
             span.light-gray All containers of this BL have completed their journey
             span.float-right.light-gray.small.updated-at= ent.timeAgo
+    - } else if (newUser) {
+        .error-notfound You don’t seem to have any shipments yet. Let’s get started soon!
     - } else {
         .error-notfound No results found. Please check input data
     - }

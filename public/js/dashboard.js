@@ -28,4 +28,18 @@ $(document).ready(function() {
     e.preventDefault();
     window.location.href = '/track/' + $(this).attr('data-id');
   });
+
+  $('.btn-download-csv').click(function (e) { 
+    e.preventDefault();
+    if (entries.length > 0) {
+      const entriesList = entries.map(function (ent) {return ent._id});
+      fetch('/downloadcsv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(entriesList)
+      })
+    }
+  });
 });

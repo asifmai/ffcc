@@ -19,6 +19,7 @@ module.exports.track_get = async (req, res, next) => {
 }
 
 module.exports.search_get = async (req, res, next) => {
+  const allEntries = await Entry.find({'details.Customer Email': req.user.email});
   const searchType = req.query.searchType ? req.query.searchType : '';
   const searchTerm = req.query.searchTerm ? req.query.searchTerm : '';
   
@@ -37,7 +38,11 @@ module.exports.search_get = async (req, res, next) => {
   }
 
   const entries = await dbQuery.sort({updatedAt: 'desc'}).exec();
-  res.render('dashboard', {entries, searchTerm, searchType});
+  if (allEntries.length == 0) {
+    res.render('dashboard', {entries, searchTerm, searchType, newUser: true});
+  } else {
+    res.render('dashboard', {entries, searchTerm, searchType, newUser: false});
+  }
 }
 
 module.exports.signin_get = (req, res, next) => {
@@ -104,4 +109,12 @@ module.exports.verify_post = async (req, res, next) => {
     req.flash('error_msg', 'Invalid Code, Try again...');
     res.redirect(`/verify/${userid}`);
   }
+}
+
+module.exports.downloadcsv_post = async (req, res, next) => {
+  const entries = [];
+  for (let i = 0; i < req.body.length; i++) {
+    entries.push(await Entry.findById(req.body[i]));
+  };
+  console.log(entries);
 }

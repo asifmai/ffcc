@@ -12,6 +12,9 @@ router.get('/track/:id', auth.ensureAuthenticated, auth.ensureVerified, auth.ens
 /* GET - Private - Track page */
 router.get('/search', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.search_get);
 
+// POST - Private - Download Data
+router.post('/downloadcsv', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.downloadcsv_post)
+
 /* GET - Show Sign in Page */
 router.get('/signin', indexController.signin_get);
 

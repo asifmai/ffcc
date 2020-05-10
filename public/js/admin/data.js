@@ -77,5 +77,16 @@ $(document).ready(function () {
     } else {
       $('.multiple-actions').addClass('d-none');
     }
-  })
+  });
+
+  $('.data-check.select-all').click(function (e) { 
+    e.stopPropagation();
+    if ($(this).is(':checked')) {
+      $(".data-check").prop("checked", true);
+      $('.multiple-actions').removeClass('d-none');
+    } else {
+      $('.data-check').prop("checked", false);
+        $('.multiple-actions').addClass('d-none');
+    }
+  });
 });

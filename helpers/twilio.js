@@ -5,7 +5,7 @@ module.exports.sendSMS = (number, body) => {
     client.messages
       .create({
          body: body,
-         from: process.env.TWILIO_FROM_NUMBER,
+         from: process.env.TWILIO_FROM_STRING,
          to: number
        })
       .then(message => {
