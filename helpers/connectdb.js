@@ -13,7 +13,7 @@ module.exports = () => new Promise(async (resolve, reject) => {
     });
     // mongoose.set('debug', true);
     console.log('MongoDB Connected...');
-    const admin = await User.findOne({isAdmin: true});
+    const admin = await User.findOne({role: 'admin'});
     if (!admin) {
       console.log('Admin User not found. Making now');
       await addAdmin();

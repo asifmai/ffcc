@@ -39,9 +39,16 @@ module.exports.data_get = async (req, res, next) => {
 
 // GET - Show Users Page
 module.exports.users_get = async (req, res, next) => {
-  const users = await User.find({isAdmin: false}).sort({firstName: 'asc'});
+  const users = await User.find({role: 'user'}).sort({firstName: 'asc'});
+  const finalUsers = [];
 
-  res.render('admin/users', {page: 'users', users});
+  for (let i = 0; i < users.length; i++) {
+    finalUsers.push(users[i].toJSON());
+    const shipments = await Entry.countDocuments({"details.Customer Email": users[i].email});
+    finalUsers[i].shipments = shipments
+  }
+  console.log(finalUsers);
+  res.render('admin/users', {page: 'users', users: finalUsers});
 }
 
 // POST - Chnage a user password

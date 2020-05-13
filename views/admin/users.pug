@@ -22,6 +22,7 @@ block content
                   th Verified
                   th Joined
                   th Last Login
+                  th Shipments
                   th Actions
               tbody
                 each usr in users
@@ -32,6 +33,7 @@ block content
                     td= usr.verified
                     td.createdAt= usr.createdAt
                     td.createdAt= usr.lastLogin
+                    td= usr.shipments
                     td
                       a.text-danger.btn-delete(href=`/admin/users/deleteuser/${usr._id}` title="Delete")
                         i.fas.fa-trash
