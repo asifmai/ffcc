@@ -73,7 +73,7 @@ module.exports.signup_post = async (req, res, next) => {
     res.render('signup', {firstName, lastName, email, phone, password, password2, error_msg: 'Phone is already registered'});
   } else {
     const verificationCode = genVerificationCode();
-    const newUser = new User({firstName, lastName, email, phone, verification: verificationCode});
+    const newUser = new User({firstName, lastName, email, phone, verification: verificationCode, role: 'user'});
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);

@@ -17,7 +17,7 @@ module.exports.ensureVerified = (req, res, next) => {
 }
 
 module.exports.ensureUser = (req, res, next) => {
-  if (req.user.isAdmin == false) {
+  if (req.user.role == 'user') {
     return next();
   } else {
     req.logout();
@@ -28,7 +28,7 @@ module.exports.ensureUser = (req, res, next) => {
 
 module.exports.ensureAuthenticatedAdmin = (req, res, next) => {
   if (req.isAuthenticated()) {
-    if (req.user.isAdmin == true) {
+    if (req.user.role == 'admin') {
       return next();
     } else {
       req.logout();

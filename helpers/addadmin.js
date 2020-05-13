@@ -11,9 +11,9 @@ module.exports = async () => {
     email: 'admin@admin.com',
     phone: '2937489327483',
     verified: true,
-    isAdmin: true,
     verification: '123456',
     password: passwordHash,
+    role: 'admin',
   });
   await newAdmin.save();
   return;

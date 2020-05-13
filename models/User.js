@@ -26,17 +26,17 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   verification: Number,
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
   lastLogin: {
     type: Date,
-  }
+  },
+  role: {
+    type: String,
+    default: 'user',
+  },
 });
 
 userSchema.virtual('fullName').get(function() {
