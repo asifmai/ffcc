@@ -15,6 +15,9 @@ router.get('/search', auth.ensureAuthenticated, auth.ensureVerified, auth.ensure
 // POST - Private - Download Data
 router.post('/downloadcsv', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.downloadcsv_post)
 
+// GET - Private - Mail Shipment Details
+router.get('/mailshipment/:id', auth.ensureAuthenticated, auth.ensureVerified, auth.ensureUser, indexController.mailshipment_get)
+
 /* GET - Show Sign in Page */
 router.get('/signin', indexController.signin_get);
 

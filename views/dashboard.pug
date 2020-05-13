@@ -80,7 +80,7 @@ block content
             .child(style="width: 28%")
               span.one= ent.details['Job No'] || ent.details['Booking No']
               span
-                button.small-button.border-bg.reached-pod(class= ent.shipStatus == 'destination' ? 'active' : '') Reached POD
+                button.small-button.border-bg.reached-pod.active= ent.details['Status'] || 'N/A'
               .light-gray #{ent.details['No Of Containers']} containers
             .img-text(style="width: 28%")
               //- img.img-fluid(src='/img/track.png' alt='')
@@ -91,6 +91,9 @@ block content
               div.ship-status2
                 span.light-gray.font-weight-bold.origin(class= ent.shipStatus == 'origin' ? 'active' : '')= ent.details['Loading Port'] || ent.details['Port Of Loading']
                 span.light-gray.float-right.font-weight-bold.destination(class= ent.shipStatus == 'destination' ? 'active' : '')= ent.details['Port Of Destination'] || ent.details['Discharge Port']
+              div.ship-status2
+                span.small= ent.ETA
+                span.float-right.small= ent.ETD 
             .child(style="width: 10%")
               .light-gray Days in Transit
               .date 12
@@ -98,7 +101,7 @@ block content
               .light-gray Date of Arrival
               .date= ent.details['ETA'] || ent.details['Delivery Date']
             .child(style="width: 3%; text-align: right")
-              a(href='#')
+              a.mailShipment(href='#', data-id= ent._id, title="Send Shipment Details in Email")
                 i.fas.fa-share-alt.light-gray
           .mt-3
             i.fas.fa-share-alt.light-gray.mr-2

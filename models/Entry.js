@@ -26,6 +26,14 @@ entrySchema.virtual('timeAgo').get(function() {
   return timeAgo.format(this.updatedAt);
 });
 
+entrySchema.virtual('ETA').get(function() {
+  return this.details['ETA'] || this.details['EGM Date'] 
+});
+
+entrySchema.virtual('ETD').get(function() {
+  return this.details['ETD'] || this.details['Bill Date'] || this.details['Billing Date']
+});
+
 entrySchema.virtual('shipStatus').get(function() {
   // let ETD;
   let ETA;

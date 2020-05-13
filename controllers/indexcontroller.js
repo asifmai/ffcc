@@ -4,6 +4,7 @@ const User = require('../models/User');
 const {genVerificationCode} = require('../helpers/random');
 const twilio = require('../helpers/twilio');
 const Entry = require('../models/Entry');
+const mailer = require('../helpers/mailer');
 
 module.exports.index_get = async (req, res, next) => {
   // const entries = await Entry.find({'details.Customer Email': req.user.email}).sort({updatedAt: 'desc'}).exec();
@@ -117,4 +118,12 @@ module.exports.downloadcsv_post = async (req, res, next) => {
     entries.push(await Entry.findById(req.body[i]));
   };
   console.log(entries);
+}
+
+// Mail Shipment Details
+module.exports.mailshipment_get = async (req, res, next) => {
+  const {id} = req.params;
+  const ent = await Entry.findById(id);
+  mailer.mailShipment(ent, req.user.email);
+  res.send('Email Sent...')
 }

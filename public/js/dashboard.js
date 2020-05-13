@@ -42,4 +42,12 @@ $(document).ready(function() {
       })
     }
   });
+
+  $('.mailShipment').click(function (e) { 
+    e.preventDefault();
+    e.stopPropagation();
+    var shipmentId = $(this).attr('data-id');
+    var fetchUrl = '/mailshipment/' + shipmentId;
+    fetch(fetchUrl);
+  });
 });

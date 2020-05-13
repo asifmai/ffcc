@@ -9,14 +9,15 @@
 }
 .navbar-nav .active ,.navbar-nav .nav-item:hover{
   color: rgb(70, 70, 180);
-  border-bottom: 3px solid rgb(70, 70, 180);
+  border-color: rgb(70, 70, 180);
 }
 .navbar-nav .nav-item{
   font-weight: 600;
-  width: 150px;
+  min-width: 150px;
   text-align: center;
   transition: 200ms !important;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
 }
 .navbar-nav >.help{
   color: rgb(70, 70, 180);
