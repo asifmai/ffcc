@@ -1,0 +1,25 @@
+extends ../layout
+
+block customhead
+  link(rel="stylesheet", href="/css/dashboard.css")
+
+block content
+  include ../partials/newnavbar
+  .container
+    span Brands page
+
+
+block customscripts
+  script.
+    window.HFCHAT_CONFIG = {
+    EMBED_TOKEN: '14658ec0-aa5a-11ea-ac42-1d2e73dabb8b',
+    ASSETS_URL: 'https://widget.happyfoxchat.com/v2/visitor'
+    };
+    (function () {
+    var scriptTag = document.createElement('script')
+    scriptTag.type = 'text/javascript'
+    scriptTag.async = true
+    scriptTag.src = window.HFCHAT_CONFIG.ASSETS_URL + '/js/widget-loader.js'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(scriptTag, s)
+    })()
