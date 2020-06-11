@@ -1,1 +1,39 @@
-div Newnavbar
+nav.navbar.navbar-expand-lg.navbar-light.p-0
+  a.navbar-brand.p-0(href='#')
+    img(src='/img/logo.png' alt='yatra')
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarNavDropdown.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a.nav-link.active(href='#') Certifications
+      li.nav-item
+        a.nav-link(href='#') Freight
+      li.nav-item
+        a.nav-link(href='#') Tracking
+      li.nav-item
+        a.nav-link(href='#') Customs
+      li.nav-item
+        a.nav-link(href='#') Clearance
+      li.nav-item
+        a.nav-link(href='#') Insurance
+      li.nav-item
+        a.nav-link(href='#') Consultancy
+    ul.navbar-nav.ml-auto
+      li.nav-item.dropdown
+        a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | My Account
+        .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href='#') Action
+          a.dropdown-item(href='#') Another action
+          a.dropdown-item(href='#') Something else here
+      li.nav-item.dropdown
+        a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Support
+        .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href='#') Action
+          a.dropdown-item(href='#') Another action
+          a.dropdown-item(href='#') Something else here
+      li.nav-item
+        a.nav-link(href='#')
+          | Offers

@@ -1,0 +1,67 @@
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 1em;
+}
+/* navbar */
+header {
+  width: 100%;
+  padding-top: 25px;
+  box-shadow: 2px 1px 5px lightgrey;
+}
+
+.navbar-brand {
+  margin-top: -15px;
+}
+.navbar-brand img {
+  width: 220px;
+}
+.nav-item {
+  padding: 0 5px !important;
+}
+
+.nav-link {
+  font-weight: 400 !important;
+  color: #666 !important;
+  font-size: 1em !important;
+  padding: 0 !important;
+  padding-bottom: 10px !important;
+}
+
+.active {
+  border-bottom: 4px solid red;
+  color: red !important;
+}
+/* page-content */
+.searchCard {
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0px 0px 13px lightgrey;
+  margin-top: 2em;
+}
+.cont {
+  padding: 0.5em;
+}
+.searchOther {
+  margin-bottom: 1.9em;
+}
+.dataDetail {
+  width: 220px;
+  margin: 0 8px;
+}
+.dataDetailImg {
+  width: 100%;
+  height: 150px;
+  background-color: black;
+  border-radius: 5px 5px 0 0;
+}
+.dataDetailImg img {
+  border-radius: 5px 5px 0 0;
+  height: 100%;
+}
+.dataDetailContent {
+  box-shadow: 0px 3px 8px lightgrey;
+  border-radius: 0 0 3px 3px;
+}
+.dataDetail p {
+  font-size: 0.8em;
+}

@@ -1,12 +1,97 @@
 extends ../layout
 
 block customhead
-  link(rel="stylesheet", href="/css/dashboard.css")
+  link(rel="stylesheet", href="/css/brand.css")
 
 block content
-  include ../partials/newnavbar
-  .container
-    span Brands page
+  .body-wrapper
+    header
+      .container
+          include ../partials/newnavbar
+    .pageContent
+      .container
+        .searchCard
+          h5.mb-4.mt-0.text-center Search Products
+          .row
+            .col-md-6
+              .cont
+                form(method='post')
+                  .radiohbg.text-center
+                    h5 Search BL
+                    label.radio-inline.mr-4
+                      input#products(name='type' value='Product List' type='radio' checked='checked')
+                      |&nbsp; Mandatory Product List
+                    label.radio-inline
+                      input#business(name='type' value='Compliance' type='radio')
+                      |&nbsp; Compliance for Product
+                  .d-flex.align-items-center.justify-content-center
+                    #cont1.w-75.mr-3(style='')
+                      select#category.form-control(name='category' required='required')
+                        option(value='') --Select--
+                        option(value='1') BIS Registration
+                        option(value='2') WPC Approval
+                        option(value='3') ISI Certification
+                        option(value='4') BEE Registration
+                        option(value='5') TEC Certification
+                        option(value='6') EPR Authorization
+                    #cont2.w-75.mr-3(style='display: none;')
+                      input.form-control.basicAutoComplete(type='text' autocomplete='off' data-url='myurl' placeholder='Rice Cooker')
+                    span.input-group-btn
+                      button#submit.btn.btn-danger(type='submit' name='submit')
+                        | Go 
+                        i.fa.fa-arrow-right
+            .col-md-6
+              .cont
+                form(method='post')
+                  .radiohbg.text-center
+                    h5.searchOther Search Other
+                  .d-flex.align-items-center.justify-content-center
+                    #cont1.w-75(style='display: none;')
+                      select#category.form-control(name='category' required='required')
+                        option(value='') --Select--
+                        option(value='1') BIS Registration
+                        option(value='2') WPC Approval
+                        option(value='3') ISI Certification
+                        option(value='4') BEE Registration
+                        option(value='5') TEC Certification
+                        option(value='6') EPR Authorization
+                    #cont2.w-75.mr-3
+                      input.form-control.basicAutoComplete(type='text' autocomplete='off' data-url='myurl' placeholder='Rice Cooker')
+                    span.input-group-btn
+                      button#submit.btn.btn-danger(type='submit' name='submit')
+                        | Go 
+                        i.fa.fa-arrow-right
+        .dataCard.my-3.py-3
+          h3.mb-3 Products
+          .d-flex
+            .dataDetail
+              .dataDetailImg
+                img.w-100(src='/img/PARIS.jpg' alt='')
+              .dataDetailContent.p-3
+                p.mb-2 1234567
+                p.mb-0 Lorem ipsum dolor sit amet consectetur
+                p.mb-0 Lorem ipsum dolor sit
+            .dataDetail
+              .dataDetailImg
+                img.w-100(src='/img/PARIS.jpg' alt='')
+              .dataDetailContent.p-3
+                p.mb-2 1234567
+                p.mb-0 Lorem ipsum dolor sit amet consectetur
+                p.mb-0 Lorem ipsum dolor sit
+            .dataDetail
+              .dataDetailImg
+                img.w-100(src='/img/PARIS.jpg' alt='')
+              .dataDetailContent.p-3
+                p.mb-2 1234567
+                p.mb-0 Lorem ipsum dolor sit amet consectetur
+                p.mb-0 Lorem ipsum dolor sit
+            .dataDetail
+              .dataDetailImg
+                img.w-100(src='/img/PARIS.jpg' alt='')
+              .dataDetailContent.p-3
+                p.mb-2 1234567
+                p.mb-0 Lorem ipsum dolor sit amet consectetur
+                p.mb-0 Lorem ipsum dolor sit
 
 
 block customscripts
@@ -23,3 +108,30 @@ block customscripts
     var s = document.getElementsByTagName('script')[0]
     s.parentNode.insertBefore(scriptTag, s)
     })()
+
+  script.
+    //- $(".basicAutoComplete").autoComplete({
+    //-   resolverSettings: {
+    //-     url: "test-list.json",
+    //-   },
+    //- });
+    $(document).ready(function () {
+      $("#products").click(function () {
+        $('input[type="radio"]').attr("checked", "checked");
+        $("#business").removeAttr("checked");
+        $("#category").attr("required", "required");
+        $("#productt").removeAttr("required");
+        $("#cont1").css("display", "block");
+        $("#cont2").css("display", "none");
+      });
+
+      $("#business").click(function () {
+        $('input[type="radio"]').attr("checked", "checked");
+        $("#products").removeAttr("checked");
+        $("#productt").attr("required", "required");
+        $("#category").removeAttr("required");
+
+        $("#cont1").css("display", "none");
+        $("#cont2").css("display", "block");
+      });
+    });
